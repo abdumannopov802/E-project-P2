@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
-    'drf_yasg',
+    
     'store',
+    'drf_yasg',
+    'rest_framework',
     'rest_framework_simplejwt',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +60,7 @@ ROOT_URLCONF = 'shoppingProject_conf.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [str(BASE_DIR.joinpath('templates'))],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +82,7 @@ WSGI_APPLICATION = 'shoppingProject_conf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'my_test_db',
+        'NAME': 'exam_p1',
         'USER': 'postgres',
         'PASSWORD': '090090815',
         'HOST': 'localhost',
@@ -125,49 +127,38 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# for collectstatic
+STATIC_ROOT = BASE_DIR / 'productionfiles'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# settings.py
-from datetime import timedelta # import this library top of the settings.py file
+# JWT Authentication settings
+from datetime import timedelta
 
-# put on your settings.py file below INSTALLED_APPS
-# REST_FRAMEWORK = {
-#     'DEFAULT_PERMISSION_CLASSES': (
-#         'rest_framework.permissions.IsAuthenticated',
-#     ),
-#     'DEFAULT_AUTHENTICATION_CLASSES': (
-#         'rest_framework_simplejwt.authentication.JWTAuthentication',
-#     ),
-# }
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
 
-# SECRET_KEY = 'asdfasdfasdf'
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME': timedelta(days=30),
+    'SLIDING_TOKEN_REFRESH_LIFETIME_LATE_USER': timedelta(days=1),
+    'SLIDING_TOKEN_LIFETIME_LATE_USER': timedelta(days=30),
+}
 
-# SIMPLE_JWT = {
-# 'ACCESS_TOKEN_LIFETIME': timedelta(days=10),
-# 'REFRESH_TOKEN_LIFETIME': timedelta(days=20),
-# 'ROTATE_REFRESH_TOKENS': False,
-# 'BLACKLIST_AFTER_ROTATION': True,
-
-# 'ALGORITHM': 'HS256',
-# 'SIGNING_KEY': SECRET_KEY,
-# 'VERIFYING_KEY': None,
-# 'AUDIENCE': None,
-# 'ISSUER': None,
-
-# 'AUTH_HEADER_TYPES': ('Bearer',),
-# 'USER_ID_FIELD': 'id',
-# 'USER_ID_CLAIM': 'user_id',
-
-# 'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-# 'TOKEN_TYPE_CLAIM': 'token_type',
-
-# 'JTI_CLAIM': 'jti',
-# 'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
-
-# 'SLIDING_TOKEN_REFRESH_EXP_CLAIM': 'refresh_exp',
-# 'SLIDING_TOKEN_LIFETIME': timedelta(days=10),
-# 'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=20),
+# SWAGGER_SETTINGS = {
+#     'SECURITY_DEFINITIONS': {
+#         'api_key': {
+#             'type': 'apiKey',
+#             'in': 'header',
+#             'name': 'Authorization'
+#         }
+#     },
 # }

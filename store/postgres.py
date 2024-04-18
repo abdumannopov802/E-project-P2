@@ -45,7 +45,7 @@ class ConnectionPostgres:
                 connection.commit()
 
 postgres = ConnectionPostgres(
-    dbname="my_test_db",
+    dbname="exam_p1",
     user="postgres",
     password="090090815",
     host="localhost",

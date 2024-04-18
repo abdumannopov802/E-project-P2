@@ -35,6 +35,12 @@ class CustomerSerializer(serializers.ModelSerializer):
         model = Customer
         fields = '__all__'
 
+class CustomerUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = '__all__'
+
+
 class ShopCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShopCard
