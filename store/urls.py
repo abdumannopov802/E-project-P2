@@ -1,12 +1,8 @@
 from django.urls import path
-# from django.conf.urls import url
 from .views import *
 
 
 urlpatterns = [
-    # path('', Home.as_view()),
-    # path('category', CategoryAPIView.as_view()),
-
     path('create-category/', create_category),
     path('get-categories/', get_categories),
     path('update-category/<int:pk>', update_category),
@@ -32,11 +28,20 @@ urlpatterns = [
     path('update-item/<int:pk>', update_item),
     path('delete-item/<int:pk>', delete_item),
 
-    path('get-expired-products', get_expired_products),
-    path('get-customer-shop-cart/<int:pk>', get_customer_shopcart),
-    path('get-all-products-total', get_all_products_total),
-    path('most-purchased-products', most_purchased_products),
-    path('customer-total-purchase/<int:pk>', customer_total_purchase),
+    path('create-admin/', create_admin),
+    path('get-admin/', get_admin),
+    path('update-admin/<int:pk>', update_admin),
+    path('delete-admin/<int:pk>', delete_admin),
 
+    path('get-expired-products', get_expired_products),
+    path('get-costumer-history/<int:pk>', get_costumer_history),
+    path('get-all-products-total', get_all_products_total),
+    path('get-most-purchased-product', most_purchased_products),
+    path('get-costumer-total-purchase/<int:pk>', costumer_total_purchase),
     path('add-to-cart/<int:pk>', add_to_cart),
+    path('activate-orders/', activate_order),
+
+    path('signup/', user_signup, name='signup'),
+    path('login/', user_login, name='login'),
+    path('logout/', user_logout, name='logout'),
 ]

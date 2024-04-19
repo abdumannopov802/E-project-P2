@@ -7,7 +7,6 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = '__all__'
 
-
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
@@ -18,7 +17,6 @@ class CategoryUpdateSerializer(serializers.ModelSerializer):
         model = Category
         fields = '__all__'
         
-
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
@@ -28,7 +26,6 @@ class ProductUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = '__all__'
-
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,7 +37,6 @@ class CustomerUpdateSerializer(serializers.ModelSerializer):
         model = Customer
         fields = '__all__'
 
-
 class ShopCardSerializer(serializers.ModelSerializer):
     class Meta:
         model = ShopCard
@@ -51,7 +47,22 @@ class ItemSerializer(serializers.ModelSerializer):
         model = Item
         fields = '__all__'
 
+class ItemUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Item
+        fields = '__all__'
+
 class AdminSerializer(serializers.ModelSerializer):
     class Meta:
         model = Admin
+        fields = '__all__'
+
+class AdminUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Admin
+        fields = '__all__'
+
+class CostumerHistorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CostumerHistory
         fields = '__all__'
